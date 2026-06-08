@@ -1,35 +1,48 @@
-
-const numeroSecreto = Math.floor(Math.random() * 100) + 1;
-const tentativas = 10;
-document.getElementById("tentativas").textContent = `Tentativas restantes: ${tentativas}`;
-
-let tentativasRestantes = tentativas;
-
-function verificarPalpite() {
-
-    let palpite = parseInt(document.getElementById("palpite").value);
-    document.getElementById("palpite").value = "";
-
-    if (isNaN(palpite) || palpite < 1 || palpite > 100) {
-        alert("Por favor, insira um número entre 1 e 100.");
-        return;
+class Parquimetro {
+    constructor(valor) {
+        this.valor = valor;
     }
 
-    if (palpite === numeroSecreto) {
-        document.getElementById("mensagem").textContent = "Parabéns! Você acertou o número!";
-        document.getElementById("palpite").disabled = true;
-        return;
-    } else {
-        tentativasRestantes--;
-        document.getElementById("tentativas").textContent = `Tentativas restantes: ${tentativasRestantes}`;
-        if (palpite < numeroSecreto) {
-            document.getElementById("mensagem").textContent = "Tente um número maior!";
-        } else {
-            document.getElementById("mensagem").textContent = "Tente um número menor!";
+    calcular() {
+        if (this.valor < 1) {
+            return "Valor insuficiente para estacionar.";
         }
-    }
 
-    if (tentativasRestantes === 0) {
-        document.getElementById("mensagem").textContent = `Game Over! O número secreto era ${numeroSecreto}.`;
+        let tempo;
+        let troco;
+
+        if (this.valor >= 3) {
+            tempo = 120; // 2 horas
+            troco = this.valor - 3;
+        } else if (this.valor >= 1.75) {
+            tempo = 60; // 1 hora
+            troco = this.valor - 1.75;
+        } else {
+            tempo = 30;
+            troco = this.valor - 1;
+        }
+
+        return { tempo, troco };
     }
 }
+
+const btnCalcular = document.getElementById("calcular");
+
+btnCalcular.addEventListener("click", () => {
+    const valor = Number(document.getElementById("valor").value);
+
+    const parquimetro = new Parquimetro(valor);
+
+    const resultado = parquimetro.calcular();
+
+    const divResultado = document.getElementById("resultado");
+
+    if (resultado.mensagem) {
+        divResultado.innerHTML = resultado.mensagem;
+    } else {
+        divResultado.innerHTML = `
+            Tempo: ${resultado.tempo} minutos <br>
+            Troco: R$ ${resultado.troco.toFixed(2)}
+        `;
+    }
+});
