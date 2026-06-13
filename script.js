@@ -1,48 +1,51 @@
-class Parquimetro {
-    constructor(valor) {
-        this.valor = valor;
-    }
+document.getElementById('cep').addEventListener('blur', (evento) => {
+    const elemento = evento.target;
+    const cepInformado = elemento.value;
 
-    calcular() {
-        if (this.valor < 1) {
-            return "Valor insuficiente para estacionar.";
-        }
+    if (!(cepInformado.length === 8))
+        return;
 
-        let tempo;
-        let troco;
+    fetch(`https://viacep.com.br/ws/${cepInformado}/json/`)
+        .then((resposta) => resposta.json())
+        .then((data) => {
+            if (!(data.erro)) {
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('estado').value = data.uf;
+            } else {
+                alert('CEP não encontrado');
+            }
+        })
+        .catch((erro) => {
+            console.error(erro);
+        });
 
-        if (this.valor >= 3) {
-            tempo = 120; // 2 horas
-            troco = this.valor - 3;
-        } else if (this.valor >= 1.75) {
-            tempo = 60; // 1 hora
-            troco = this.valor - 1.75;
-        } else {
-            tempo = 30;
-            troco = this.valor - 1;
-        }
+});
 
-        return { tempo, troco };
-    }
-}
+document.getElementById('formulario').addEventListener('submit', (evento) => {
+    evento.preventDefault();    
+    const cep = document.getElementById('cep').value;
+    const cidade = document.getElementById('cidade').value;
+    const estado = document.getElementById('estado').value;
 
-const btnCalcular = document.getElementById("calcular");
+    console.log(`CEP: ${cep}, Cidade: ${cidade}, Estado: ${estado}`);
 
-btnCalcular.addEventListener("click", () => {
-    const valor = Number(document.getElementById("valor").value);
+    const endereco = {
+        cep,
+        cidade,
+        estado
+    };
 
-    const parquimetro = new Parquimetro(valor);
+    localStorage.setItem('endereco', JSON.stringify(endereco));
 
-    const resultado = parquimetro.calcular();
+});
 
-    const divResultado = document.getElementById("resultado");
+document.addEventListener('DOMContentLoaded', () => {
+    const enderecoSalvo = localStorage.getItem('endereco');
 
-    if (resultado.mensagem) {
-        divResultado.innerHTML = resultado.mensagem;
-    } else {
-        divResultado.innerHTML = `
-            Tempo: ${resultado.tempo} minutos <br>
-            Troco: R$ ${resultado.troco.toFixed(2)}
-        `;
+    if (enderecoSalvo) {
+        const endereco = JSON.parse(enderecoSalvo);
+        document.getElementById('cep').value = endereco.cep;
+        document.getElementById('cidade').value = endereco.cidade;
+        document.getElementById('estado').value = endereco.estado;
     }
 });
