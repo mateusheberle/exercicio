@@ -1,51 +1,60 @@
-document.getElementById('cep').addEventListener('blur', (evento) => {
-    const elemento = evento.target;
-    const cepInformado = elemento.value;
+const clientes = document.getElementById('listaClientes');
 
-    if (!(cepInformado.length === 8))
-        return;
+const link = "https://crudcrud.com/api/02799f4561a1413b82b497c143bfd4a7";
 
-    fetch(`https://viacep.com.br/ws/${cepInformado}/json/`)
-        .then((resposta) => resposta.json())
-        .then((data) => {
-            if (!(data.erro)) {
-                document.getElementById('cidade').value = data.localidade;
-                document.getElementById('estado').value = data.uf;
-            } else {
-                alert('CEP não encontrado');
-            }
+function carregarClientes() {
+    
+    clientes.innerHTML = '';
+
+    fetch(`${link}/clientes`, {
+        method: 'GET'
+    })
+        .then(resposta => resposta.json())
+        .then((listaDeClientes) => {
+            listaDeClientes.forEach((cliente) => {
+                const item = document.createElement('li');
+                item.innerHTML = `${cliente.nome} <button onclick="remove('${cliente._id}', this.parentElement)">Remover</button>`;
+                clientes.appendChild(item);
+            });
         })
-        .catch((erro) => {
-            console.error(erro);
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+carregarClientes();
+
+document.getElementById('add').addEventListener('click', () => {
+    const nome = document.getElementById('cliente').value;
+
+    fetch(`${link}/clientes`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nome: nome })
+    })
+        .then(resposta => resposta.json())
+        .then((cliente) => {
+            carregarClientes();
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+});
+
+function remove(id, elemento) {
+    fetch(`${link}/clientes/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(() => {
+            carregarClientes();
+        })
+        .catch((error) => {
+            console.log(error);
         });
 
-});
-
-document.getElementById('formulario').addEventListener('submit', (evento) => {
-    evento.preventDefault();    
-    const cep = document.getElementById('cep').value;
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value;
-
-    console.log(`CEP: ${cep}, Cidade: ${cidade}, Estado: ${estado}`);
-
-    const endereco = {
-        cep,
-        cidade,
-        estado
-    };
-
-    localStorage.setItem('endereco', JSON.stringify(endereco));
-
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const enderecoSalvo = localStorage.getItem('endereco');
-
-    if (enderecoSalvo) {
-        const endereco = JSON.parse(enderecoSalvo);
-        document.getElementById('cep').value = endereco.cep;
-        document.getElementById('cidade').value = endereco.cidade;
-        document.getElementById('estado').value = endereco.estado;
-    }
-});
+}
