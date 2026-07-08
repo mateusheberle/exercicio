@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Calculadora</h1>
+        <p>Calculadora com funções básicas</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Sobre a Calculadora</h2>
+            <p>Esta é uma calculadora simples com funções básicas de adição, subtração, multiplicação e divisão.</p>
+        </section>
+
+        <section>
+            <h2>História da Calculadora</h2>
+            <p>A história da calculadora evoluiu de instrumentos manuais, como o ábaco (c. 2400 a.C.), para máquinas
+                mecânicas no século XVII, destacando-se a Pascalina (1642) de Blaise Pascal, que somava e subtraía. A
+                automatização avançou com Leibniz (1671) e, no século XX, eletrônicos substituíram engrenagens,
+                culminando nas calculadoras de bolso modernas.</p>
+        </section>
+
+        <section>
+            <h2>Primeira Calculadora</h2>
+            <p>O Ábaco foi o primeiro instrumento de cálculo, utilizando contas e varetas para adições e subtrações.</p>
+        </section>
+    </main>
+
+    <form action="calculadora.php" method="get">
+        <label for="numero1">Primeiro Número: </label>
+        <input type="text" id="numero1" name="numero1" required>
+
+        <label for="numero2">Segundo Número: </label>
+        <input type="text" id="numero2" name="numero2" required>
+
+        <label for="operacao">Operação: </label>
+        <select id="operacao" name="operacao">
+            <option value="soma">Soma</option>
+            <option value="subtracao">Subtração</option>
+            <option value="multiplicacao">Multiplicação</option>
+            <option value="divisao">Divisão</option>
+        </select>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    <footer>
+        <p>&copy; 2026 Mateus Auler Heberle - Todos os direitos reservados</p>
+    </footer>
+</body>
+
+</html>
