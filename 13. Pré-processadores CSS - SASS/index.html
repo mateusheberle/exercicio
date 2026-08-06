@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Agência Criativa Web</title>
+        <link rel="stylesheet" href="css/estilos.css">
+    </head>
+    <body>
+        <main class="container">
+            <header class="topo">
+                <div class="brand">
+                    <img class="brand__img"
+                        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=120&q=80"
+                        srcset="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=120&q=80 120w, https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=240&q=80 240w, https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=480&q=80 480w"
+                        sizes="(max-width: 480px) 48px, 64px"
+                        alt="Logo da Agência Criativa Web"
+                        loading="lazy"
+                    >
+                    <h1 class="brand__title">Agência Criativa Web</h1>
+                </div>
+
+                <input type="checkbox" id="menu__toggle" class="menu__toggle" aria-label="Abrir menu">
+                <label for="menu__toggle" class="menu__button" aria-hidden="true">☰</label>
+
+                <nav class="menu">
+                    <ul class="menu__list">
+                        <li class="menu__item"><a href="#" class="menu__link">Home</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">Serviços</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">Portfólio</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">Contato</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section class="home">
+                <img class="home__banner"
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
+                    srcset="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=480&q=80 480w, https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80 1200w"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    alt="Banner da Agência Criativa Web"
+                    loading="lazy"
+                >
+                <div class="home__content">
+                    <h2 class="home__title">Bem-vindo à nossa agência!</h2>
+                    <p class="home__description">Transformamos ideias em experiências web modernas, funcionais e visualmente impactantes.</p>
+                </div>
+            </section>
+            <section class="about">
+                <h2 class="about__title">Sobre Nós</h2>
+                <p class="about__description">Somos uma agência especializada em design e desenvolvimento web, oferecendo soluções criativas para nossos clientes.</p>
+            </section>
+            <section class="services">
+                <h2 class="services__title">Nossos Serviços</h2>
+                <ul class="services__list">
+                    <li class="services__item">Design Responsivo</li>
+                    <li class="services__item">Desenvolvimento Web</li>
+                    <li class="services__item">Marketing Digital</li>
+                    <li class="services__item">Consultoria em UX/UI</li>
+                </ul>
+            </section>
+            <section class="depoiments">
+                <h2 class="depoiments__title">O que nossos clientes dizem</h2>
+                <p class="depoiments__quote">"Excelente trabalho! Recomendo a todos."</p>
+            </section>
+            <section class="contact">
+                <h2 class="contact__title">Contato</h2>
+                <form class="contact__form" action="#" method="post">
+                    <label for="name" class="contact__label">Nome:</label>
+                    <input type="text" id="name" name="name" class="contact__input" required>
+
+                    <label for="email" class="contact__label">Email:</label>
+                    <input type="email" id="email" name="email" class="contact__input" required>
+
+                    <label for="message" class="contact__label">Mensagem:</label>
+                    <textarea id="message" name="message" class="contact__textarea" required></textarea>
+
+                    <button type="submit" class="contact__button">Enviar</button>
+                </form>
+            </section>
+        </main>
+    </body>
+</html>

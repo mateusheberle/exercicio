@@ -1,0 +1,62 @@
+@use 'variaveis';
+
+.contact {
+    &__form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    
+    &__label {
+        grid-column: span 1;
+    }
+    
+    &__input {
+        grid-column: span 1;
+    }
+    
+    &__textarea {
+        grid-column: 1 / -1;
+        min-height: 12vh;
+    }
+    
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid variaveis.$cor-borda;
+        border-radius: 0.5rem;
+    }
+    
+    &__button {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact{
+
+        &__form {
+            grid-template-columns: 1fr;
+        }
+        
+        &__label,
+        &__input,
+        &__textarea,
+        &__button {
+            grid-column: auto;
+        }
+        
+        &__textarea {
+            grid-column: auto;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .contact{
+        &__button {
+            width: 100%;
+        }
+    }
+}

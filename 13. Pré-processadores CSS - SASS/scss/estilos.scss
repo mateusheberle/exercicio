@@ -1,0 +1,60 @@
+@use 'variaveis';
+@use 'brand';
+@use 'menu';
+@use 'home';
+@use 'contact';
+@use 'services';
+@use 'mixins';
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    background: linear-gradient(180deg, #eef4ff 0%, variaveis.$cor-fundo 100%);
+    color: variaveis.$cor-texto;
+    font-family: variaveis.$fonte-principal;
+    line-height: 1.6;
+    font-size: 1rem;
+    padding: variaveis.$espaco-vertical variaveis.$espaco-base;
+}
+
+.home__title,
+.about__title,
+.services__title,
+.depoiments__title,
+.contact__title {
+    @include mixins.title;
+}
+
+.home__description,
+.about__description,
+.depoiments__quote {
+    @include mixins.descricao;
+}
+
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+
+
+@media (max-width: 768px) {
+    .topo {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        font-size: 0.95rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}

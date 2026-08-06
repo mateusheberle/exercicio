@@ -1,0 +1,21 @@
+@use 'variaveis';
+.services {
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+        gap: 1rem;
+    }
+
+    &__item {
+        background: variaveis.$cor-superficie;
+        border: 1px solid variaveis.$cor-borda;
+        border-radius: variaveis.$raio;
+        box-shadow: variaveis.$sombra;
+        padding: 1rem;
+        color: variaveis.$cor-texto;
+    }
+}

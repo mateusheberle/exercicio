@@ -1,0 +1,35 @@
+@use 'variaveis';
+
+.home {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+
+    &__banner {
+        width: 100%;
+        border-radius: variaveis.$raio;
+        box-shadow: variaveis.$sombra;
+    }
+
+    &__content {
+        max-width: 38rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home {
+        grid-template-columns: 1fr;
+        &__content {
+            max-width: 100%;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        .home__title {
+            font-size: 1.25rem;
+        }
+    }
+}

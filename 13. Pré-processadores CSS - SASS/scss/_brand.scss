@@ -1,0 +1,29 @@
+@use 'variaveis';
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1 1 18rem;
+    
+    &__img {
+        width: clamp(3.5rem, 6vw, 5rem);
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: variaveis.$cor-destaque;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand{
+        .brand__title {
+            font-size: 1.5rem;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@use 'variaveis';
+
+@mixin title {
+    margin: 0 0 12px;
+    color: variaveis.$cor-texto;
+    font-family: variaveis.$fonte-titulo;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+@mixin descricao {
+    margin: 0 0 variaveis.$espaco-base;
+    color: variaveis.$cor-texto-suave;
+}
